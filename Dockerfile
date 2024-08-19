@@ -5,8 +5,9 @@ WORKDIR /home/theia
 ADD package.json ./package.json
 
 RUN apt-get update && \
-    apt-get install -y python3-pip libsecret-1-dev sudo
+    apt-get install -y python3-pip libsecret-1-dev sudo chromium
 RUN pip install --break-system-packages setuptools
+ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
 RUN yarn --pure-lockfile && \
     yarn theia build && \
     yarn theia download:plugins && \
@@ -29,7 +30,7 @@ ENV HOME /home/theia
 WORKDIR /home/theia
 
 ENV SHELL=/bin/bash THEIA_DEFAULT_PLUGINS=local-dir:/home/theia/plugins
-ENV USE_LOCAL_GIT true
+ENV USE_LOCAL_GIT=true
 ENV NODE_OPTIONS=--max_old_space_size=4096
 # Makes the terminal prompt nicer
 
