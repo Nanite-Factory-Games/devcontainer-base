@@ -35,8 +35,6 @@ ENV NODE_OPTIONS=--max_old_space_size=4096
 
 
 ADD install_plugins.sh /home/theia/install_plugins.sh
-ADD plugins.txt /home/theia/plugins.txt
-RUN /home/theia/install_plugins.sh
 
 USER user
 
